@@ -28,5 +28,16 @@ public class FileLoader {
         }
         return customerData;
     }
+    public static void writeTofile( Customer customer, double finalValue) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("customerdiscount.txt", true))) {
+            writer.write(customer.getFirstName() + " - " + customer.getSecondName() + "\n");
+            writer.write(String.format("Final Value: %.2f\n", finalValue));
+            writer.write(String.format("Discount Applied: %.0f%%\\n", customer.getDiscountRate()*100));
+            writer.newLine();
+        }
+        catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+    }
     
+}
 }
