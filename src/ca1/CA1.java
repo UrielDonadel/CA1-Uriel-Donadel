@@ -21,6 +21,15 @@ public class CA1 {
         //Load customer data from file
         List<String> customerData = FileHandler.LoadCustomerData ("customer.txt");
         
+        //Process each customer
+        for (int i = 0; i < customerData.size(); i += 4) {
+            String firstName = customerData.get(1);
+            String secondName = customerData.get(i + 1);
+            String totalPurchaseStr = customerData.get(i + 2);
+            String classStr = customerData.get (i + 3);
+            String lastPurchaseYearStr = customerData.get (i + 4);
+        }
+        
     }
     
 }
