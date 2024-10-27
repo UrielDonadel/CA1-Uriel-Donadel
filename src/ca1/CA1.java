@@ -19,7 +19,7 @@ public class CA1 {
         // TODO code application logic here
         
         //Load customer data from file
-        List<String> customerData = FileHandler.LoadCustomerData ("customer.txt");
+        List<String> customerData = FileLoader.LoadCustomerData ("customer.txt");
         
         //Process each customer
         for (int i = 0; i < customerData.size(); i += 4) {
