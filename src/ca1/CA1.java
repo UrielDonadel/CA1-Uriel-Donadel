@@ -4,6 +4,8 @@
  */
 package ca1;
 
+import java.util.List;
+
 /**
  *
  * @author URIEL
@@ -15,6 +17,10 @@ public class CA1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        //Load customer data from file
+        List<String> customerData = FileHandler.LoadCustomerData ("customer.txt");
+        
     }
     
 }
