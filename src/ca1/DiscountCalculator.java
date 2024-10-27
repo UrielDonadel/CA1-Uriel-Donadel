@@ -5,8 +5,7 @@
 package ca1;
 
 /**
- *
- * @author URIEL
+ * Class to calculate discount based on customer class and last purchase year.
  */
 public class DiscountCalculator {
     
@@ -33,9 +32,9 @@ public class DiscountCalculator {
         }
         
         customer.setDiscountRate(discountRate);
-        return customer.getCustomerClass().TotalPurchase() - (customer.getTotalPurchase() * discountRate);
-            
-        }
+        return customer.getTotalPurchase() - (customer.getTotalPurchase() * discountRate);
     }
+}
+
     
 

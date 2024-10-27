@@ -1,0 +1,28 @@
+Sam - Weiss
+Final Value: 455.01
+Discount Applied: 13%
+
+Cristiani - Eccher
+Final Value: 1477.31
+Discount Applied: 3%
+
+Declan - Walsh
+Final Value: 189.70
+Discount Applied: 30%
+
+Barry - Smart
+Final Value: 2780.00
+Discount Applied: 20%
+
+Katie - White
+Final Value: 78.00
+Discount Applied: 0%
+
+Peter - Nolan
+Final Value: 159.80
+Discount Applied: 15%
+
+Patrick - Moss
+Final Value: 79.20
+Discount Applied: 10%
+

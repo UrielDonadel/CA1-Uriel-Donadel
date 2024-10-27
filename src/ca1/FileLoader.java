@@ -9,35 +9,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author URIEL
+ * Class to handle file loading and saving operations.
  */
 public class FileLoader {
-    // Loads customer data from the specified file and returns a list of string
+    // Loads customer data from the specified file and returns a list of strings
     public static List<String> loadCustomerData(String fileName) {
-        List <String> customerData = new ArrayList<>();
+        List<String> customerData = new ArrayList<>();
         
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
-            while ((line = reader.readLine()) ! = null) {
-            customerData.add(line);
-        }
+            while ((line = reader.readLine()) != null) {  // Corrigido: removido o espaço extra
+                customerData.add(line);
+            }
             System.out.println("Customer data loaded successfully.");
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
         }
+        
         return customerData;
     }
-    public static void writeToFile( Customer customer, double finalValue) {
+
+    // Writes the final value and discount applied to a file
+    public static void writeToFile(Customer customer, double finalValue) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("customerdiscount.txt", true))) {
             writer.write(customer.getFirstName() + " - " + customer.getSecondName() + "\n");
             writer.write(String.format("Final Value: %.2f\n", finalValue));
-            writer.write(String.format("Discount Applied: %.0f%%\\n", customer.getDiscountRate()*100));
+            writer.write(String.format("Discount Applied: %.0f%%\n", customer.getDiscountRate() * 100));  // Corrigido: substituído \\n por \n
             writer.newLine();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
+        }
     }
-    
-}
 }

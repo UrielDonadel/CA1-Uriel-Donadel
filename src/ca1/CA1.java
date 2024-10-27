@@ -7,49 +7,47 @@ package ca1;
 import java.util.List;
 
 /**
- *
- * @author URIEL
+ * Main class to handle customer discount calculations.
+ * GitHub Repository Link: 
  */
 public class CA1 {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
         
-        //Load customer data from file
-        List<String> customerData = FileLoader.LoadCustomerData ("customer.txt");
+        // Load customer data from file
+        List<String> customerData = FileLoader.loadCustomerData("customer.txt");
         
-        //Process each customer
-        for (int i = 0; i < customerData.size(); i += 4) {
-            String firstName = customerData.get(1);
-            String secondName = customerData.get(i + 1);
-            String totalPurchaseStr = customerData.get(i + 2);
-            String classStr = customerData.get (i + 3);
-            String lastPurchaseYearStr = customerData.get (i + 4);
+        // Process each customer in blocks of 4 lines
+        for (int i = 0; i + 3 < customerData.size(); i += 4) {  // Verifica se há pelo menos 4 linhas restantes
+            String fullName = customerData.get(i);
+            String totalPurchaseStr = customerData.get(i + 1);
+            String classStr = customerData.get(i + 2);
+            String lastPurchaseYearStr = customerData.get(i + 3);
             
-            //Create and validate customer
+            // Dividir o nome completo em primeiro e segundo nome
+            String[] nameParts = fullName.split(" ", 2);  // Divide o nome completo em duas partes
+            String firstName = nameParts[0];
+            String secondName = nameParts.length > 1 ? nameParts[1] : "";  // Evita erro caso não haja segundo nome
+            
+            // Create and validate customer
             Customer customer = new Customer(firstName, secondName, totalPurchaseStr, classStr, lastPurchaseYearStr);
             if (customer.isValid()) {
-                //calculate final value with discount
-                double finalValue = DiscountCalculator, calculateDiscountedValue(customer);
+                // Calculate final value with discount
+                double finalValue = DiscountCalculator.calculateDiscountedValue(customer);
                 
-                //write result to output file
-                FileHandler.writeToFile(customer, finalValue);
+                // Write result to output file
+                FileLoader.writeToFile(customer, finalValue);
                 
-                //display result in console for verification
-                System.out.println("%s %s - Final Value: %.2f, Discount Applied: %.0f%%%n", customer.getFirstName(), customer.getSecondName(), finalValue, customer.getDiscountRate() * 100);
-            }
-            else{
-                //Show error message if any validation fails
+                // Display result in console for verification
+                System.out.printf("%s %s - Final Value: %.2f, Discount Applied: %.0f%%%n",
+                                  customer.getFirstName(), customer.getSecondName(), finalValue, customer.getDiscountRate() * 100);
+            } else {
+                // Show error message if any validation fails
                 System.out.println("Invalid data format for customer starting with: " + customer.getFirstName());
             }
         }
-            System.out.println("Processing complete. Discount calculated, saved, and displayed in console. ");
-            }
-        }
         
+        System.out.println("Processing complete. Discounts calculated, saved, and displayed in console.");
     }
-    
 }
+
